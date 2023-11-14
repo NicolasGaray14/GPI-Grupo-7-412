@@ -1,4 +1,4 @@
-import mysql.connector
+import mysql.connector #pip install mysql-connector-python
 
 class MySQLConnection:
     def __init__(self, host, user, password, database):
@@ -47,8 +47,8 @@ class MySQLConnection:
 if __name__ == "__main__":
     connection = MySQLConnection(
         host="localhost",
-        user="tu_usuario",
-        password="tu_contraseña",
+        user="Gustavo",
+        password="fldsmdfr",
         database="tu_base_de_datos"
     )
 
