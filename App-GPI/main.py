@@ -1,5 +1,4 @@
 #Importaciones
+import Interfaz as IN
 
-import Interfaz as GUI
-
-Ventana_Login = GUI.Login()
+Ventana_Login = IN.Login()
