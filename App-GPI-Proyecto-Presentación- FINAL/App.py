@@ -413,7 +413,7 @@ class MOD_Usuario(ctk.CTkToplevel):
         tree.heading('Modificación',text='Última Modificación')
         tree.heading('Responsable',text='Responsable')
         tree.heading('Rol',text='Rol')
-        tree.place(x=380,y=20)
+        tree.place(x=480,y=20)
         tree.bind('<ButtonRelease>',mostrar_data)
         add_to_treeview()
 
@@ -683,7 +683,7 @@ class MOD_Producto(ctk.CTkToplevel):
         tree.heading('Descripcion',text='Descripcion')
         tree.heading('Modificación',text='Modificación')
         tree.heading('Responsable',text='Responsable')
-        tree.place(x=380,y=20)
+        tree.place(x=480,y=20)
         tree.bind('<ButtonRelease>',mostrar_data)
         add_to_treeview()
 
@@ -895,7 +895,7 @@ class MOD_Ubicaciones(ctk.CTkToplevel):
         tree.heading('Descripción',text='Descripción')
         tree.heading('Fecha Modificación',text='Fecha Modificación')
         tree.heading('Responsable',text='Responsable')
-        tree.place(x=380,y=20)
+        tree.place(x=480,y=20)
         tree.bind('<ButtonRelease>',mostrar_data)
         add_to_treeview()
 
@@ -1113,7 +1113,7 @@ class MOD_Inventario(ctk.CTkToplevel):
         Etiqueta_Cantidad = ctk.CTkLabel(self,font=font1,text='Cantidad:',text_color='#000',bg_color='#91a398')
         Etiqueta_Cantidad.place(x=20,y=80)
         Entrada_Cantidad = tk.Spinbox(self, from_=0, to=9999, font=font1,borderwidth=3,width=18)
-        Entrada_Cantidad.place(x=150,y=100)
+        Entrada_Cantidad.place(x=180,y=120)
         Etiqueta_Ubicacion = ctk.CTkLabel(self,font=font1,text='Ubicación:',text_color='#000',bg_color='#91a398')
         Etiqueta_Ubicacion.place(x=20,y=140)
         OptUbicacion = [resultado[0] for resultado in Ubiresultados]
@@ -1153,7 +1153,7 @@ class MOD_Inventario(ctk.CTkToplevel):
         tree.heading('Ubicación',text='Ubicación')
         tree.heading('Modificación',text='Modificación')
         tree.heading('Responsable',text='Responsable')
-        tree.place(x=380,y=20)
+        tree.place(x=580,y=20)
         tree.bind('<ButtonRelease>',mostrar_data)
         add_to_treeview()
 
@@ -1474,7 +1474,7 @@ class MOD_Movimiento(ctk.CTkToplevel):
         Etiqueta_Cantidad = ctk.CTkLabel(self,font=font1,text='Cantidad:',text_color='#000',bg_color='#91a398')
         Etiqueta_Cantidad.place(x=20,y=80)
         Entrada_Cantidad = tk.Spinbox(self, from_=0, to=9999, font=font1,borderwidth=3,width=18)
-        Entrada_Cantidad.place(x=150,y=100)
+        Entrada_Cantidad.place(x=180,y=120)
         Etiqueta_razon = ctk.CTkLabel(self,font=font1,text='Motivo:',text_color='#000',bg_color='#91a398')
         Etiqueta_razon.place(x=20,y=140)
         razones = ['Compra','Venta','Merma','Baja','Repuesto']
@@ -1525,12 +1525,13 @@ class MOD_Movimiento(ctk.CTkToplevel):
         tree.heading('Ubicación',text='Ubicación')
         tree.heading('Ultima Modificación',text='Ultima Modificación')
         tree.heading('Responsable',text='Responsable')
-        tree.place(x=380,y=20)
+        tree.place(x=480,y=20)
         tree.bind('<ButtonRelease>',mostrar_data)
         add_to_treeview()
 
         conexion.close()
 
+#8=====================================================================================================================================D
 
 class CON_Usuario(ctk.CTkToplevel):
     def __init__(self, *args, **kwargs):
@@ -1986,7 +1987,7 @@ class CON_Movimiento(ctk.CTkToplevel):
         Etiqueta_Cantidad = ctk.CTkLabel(self,font=font1,text='Cantidad:',text_color='#000',bg_color='#91a398')
         Etiqueta_Cantidad.place(x=20,y=80)
         Entrada_Cantidad = tk.Spinbox(self, from_=0, to=9999, font=font1,borderwidth=3,width=18)
-        Entrada_Cantidad.place(x=150,y=100)
+        Entrada_Cantidad.place(x=180,y=120)
         Etiqueta_razon = ctk.CTkLabel(self,font=font1,text='Motivo:',text_color='#000',bg_color='#91a398')
         Etiqueta_razon.place(x=20,y=140)
         razones = ['Compra','Venta','Merma','Baja','Repuesto']
@@ -2033,7 +2034,7 @@ class CON_Movimiento(ctk.CTkToplevel):
         tree.heading('Ubicación',text='Ubicación')
         tree.heading('Ultima Modificación',text='Ultima Modificación')
         tree.heading('Responsable',text='Responsable')
-        tree.place(x=380,y=20)
+        tree.place(x=480,y=20)
         tree.bind('<ButtonRelease>',mostrar_data)
         add_to_treeview()
 

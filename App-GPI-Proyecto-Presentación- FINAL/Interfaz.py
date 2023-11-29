@@ -56,11 +56,15 @@ class Login:
         
     #NOS ASEGURAMOS QUE ESTEN TODOS LOS CAMPOS ESCRITOS    
     def comprobacion(self,correo,contrasenna):
+            #genero un nself para mandarlo y destruir la ventana anterior FUNCIONA FALTA TESTEO
+            nself=self
+            nself.root.destroy()
             if not contrasenna or not correo:
                 messagebox.showwarning("¡Advertencia!", "¡No pueden faltar campos!")        
             else:
-                self.comprobar_credenciales(correo,contrasenna)
-    #------------------------------------------------------------------------Funcion para comprobar las credenciales-----------------------
+                #self.comprobar_credenciales(correo,contrasenna)
+                nself.comprobar_credenciales(correo,contrasenna)
+    #------------------------------------------------------Funcion para comprobar las credenciales--------------------------------
     def comprobar_credenciales(self,correo,contraseña):
         try:
             nueva_ventana=ConfirmationWindow()
