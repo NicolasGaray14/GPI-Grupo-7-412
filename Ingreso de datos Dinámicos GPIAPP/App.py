@@ -59,9 +59,12 @@ class MenuPrincipal():
         # Ingresar Movimiento
         bt_modificar_moviemientos = ctk.CTkButton(frame_botones, text='Administrador Movimiento', command=self.mod_movimiento, **estilo_boton)
         bt_modificar_moviemientos.pack(pady=10, anchor='center')
+#!--------------------------------------------------------------------------------------------------------------------------------------    
         # PILOTO DE MOVIMIENTO
         bt_PILOTO = ctk.CTkButton(frame_botones, text='PILOTO', command=self.movimiento_piloto, **estilo_boton)
         bt_PILOTO.pack(pady=10, anchor='center')
+#!--------------------------------------------------------------------------------------------------------------------------------------        
+        
         # Bucle de ejecucion de la Segunda Ventana
         self.ventana_secundaria.mainloop()
     def mod_usuario(self):
@@ -74,9 +77,10 @@ class MenuPrincipal():
         self.toplevel_window = MOD_Inventario()
     def mod_movimiento(self):
         self.toplevel_window = MOD_Movimiento()
+#!--------------------------------------------------------------------------------------------------------------------------------------        
     def movimiento_piloto(self):
         self.toplevel_window = aPILOTO()
-
+#!--------------------------------------------------------------------------------------------------------------------------------------
 class MenuPrincipalCol():
     def __init__(self, ventana_principal):
         self.ventana_principal = ventana_principal        
@@ -1528,8 +1532,6 @@ class MOD_Movimiento(ctk.CTkToplevel):
 
         conexion.close()
 
-#8=====================================================================================================================================D
-
 class CON_Usuario(ctk.CTkToplevel):
     def __init__(self, *args, **kwargs):
         
@@ -2037,8 +2039,6 @@ class CON_Movimiento(ctk.CTkToplevel):
 
         conexion.close()
 
-
-
 class aPILOTO(ctk.CTkToplevel):
     sku_control = ''
     fecha_control = ''
@@ -2047,6 +2047,7 @@ class aPILOTO(ctk.CTkToplevel):
         try:
             with mysql.connector.connect(host='localhost', user='root', password='admin', db='Jardineria') as conexion:
                 with conexion.cursor() as cursor:
+                    Ubiresultados = []
                     consulta = "SELECT nombre FROM jardineria.tipo_producto"
                     consulta2 = "SELECT nombre FROM jardineria.ubicaciones"
                     cursor.execute(consulta)
@@ -2084,29 +2085,40 @@ class aPILOTO(ctk.CTkToplevel):
         OpcionesUbicaciones = ctk.CTkComboBox(new_row,font=font1,text_color='#000',fg_color='#fff',dropdown_hover_color='#68462b',border_width=3,button_color='#68462b',button_hover_color='#0C9295',border_color='#68462b',variable=VarUbicacion,values=OptUbicacion,state='readonly',bg_color='#D0FCF6')
         OpcionesUbicaciones.set('Ubicación')
         OpcionesUbicaciones.pack(side='left', padx=1, expand=True, fill='x')
-        
-        delete_button = ctk.CTkButton(new_row,font=font1,text_color='#fff',border_color='#340A00',border_width=3,text='Eliminar',fg_color='#BA2400',hover_color='#752A18',bg_color='#D0FCF6',cursor='hand2',corner_radius=15,command=lambda: self.delete_row(new_row))
+#!--------------------------------------------------------------------------------------------------------------
+        delete_button = ctk.CTkButton(new_row,font=font1,text_color='#fff',border_color='#340A00',
+                                      border_width=3,text='Eliminar',fg_color='#BA2400',
+                                      hover_color='#752A18',bg_color='#D0FCF6',cursor='hand2',
+                                      corner_radius=15,command=lambda: self.delete_row(new_row))
         delete_button.pack(side='left', padx=5, expand=True, fill='x')
-        
-        self.entries.append((VarProducto, Entrada_Cantidad, VarUbicacion))
+#!--------------------------------------------------------------------------------------------------------------
 
-    def delete_row(self, row):
+
+#TODO----------------Esto no
+        self.entries.append((new_row, VarProducto, Entrada_Cantidad, VarUbicacion))
+#TODO----------------Esto no
+
+
+#!--------------------------------------------------------------------------------------------------------------
+    def delete_row(self, row):  # row es el marco que contiene los widgets
         row.destroy()
         # Marcar la entrada como eliminada
         row.deleted = True
         # Eliminar la entrada de la lista de entradas
         self.entries = [entry for entry in self.entries if entry[0] != row]
 
-    def save_data(self):
+    def save_data(self): # Función para guardar los datos de las lineas puestas en la base de datos
         # Obtener datos de las filas activas (no eliminadas y cantidad diferente de 0)
-        active_entries = [(entry[0].get(), entry[1].get(), entry[2].get()) for entry in self.entries if not getattr(entry[0], 'deleted', False)]
-
+        active_entries = [(entry[1].get(), entry[2].get(), entry[3].get()) for entry in self.entries if not getattr(entry[0], 'deleted', False)]
         # Imprimir datos (puedes eliminar esta línea después de verificar que funciona)
         print("Datos guardados:", active_entries)
         # Llamar al método para guardar en la base de datos
         self.save_to_database(active_entries)
-
-    def save_to_database(self, data):
+        
+        
+        
+#!--------------------------------------------------------------------------------------------------------------
+    def save_to_database(self, data): # Función para guardar los datos en la base de datos (info del save_data a la BD)
         try:
             with mysql.connector.connect(host='localhost', user='root', password='admin', db='Jardineria') as conexion:
                 with conexion.cursor() as cursor:
@@ -2175,10 +2187,13 @@ class aPILOTO(ctk.CTkToplevel):
         # Crear un marco desplazable
         self.scroll_frame = ctk.CTkScrollableFrame(self,bg_color='#91a398',fg_color='#D0FCF6')
         self.scroll_frame.place(relx=0.05, rely=0.5, relwidth=0.90, relheight=0.35, anchor='nw')
-
+#!--------------------------------------------------------------------------------------------------------------
         # Crear widgets
-        self.add_button = ctk.CTkButton(self, text="Agregar Fila", command=self.add_row, font=font1,text_color='#fff',border_color='#68462b',border_width=3,fg_color='#74DCAE',hover_color='#5AA986',bg_color='#91a398',cursor='hand2',corner_radius=15)
+        self.add_button = ctk.CTkButton(self, text="Agregar Fila", command=self.add_row, font=font1,text_color='#fff',
+                                        border_color='#68462b',border_width=3,fg_color='#74DCAE',hover_color='#5AA986',
+                                        bg_color='#91a398',cursor='hand2',corner_radius=15)
         self.add_button.place(relx=0.05, rely=0.42, anchor='nw')
+#!--------------------------------------------------------------------------------------------------------------
         # Agregar la primera fila
         self.add_row()
         # Botón para guardar datos
